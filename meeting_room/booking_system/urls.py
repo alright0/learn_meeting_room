@@ -3,6 +3,8 @@ from . import views
 
 
 urlpatterns = [
+    path('booking_list/', views.booking_list),
     # ex: /booking_system/booking_details/5/
-    path('booking_details/<int:booking_id>/', views.booking_details, name='details'),    
+    path('booking_details/<int:booking_id>/', views.booking_details,
+         name='details'),
 ]
