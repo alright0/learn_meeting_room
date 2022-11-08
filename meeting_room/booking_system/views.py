@@ -22,3 +22,11 @@ def booking_list(request):
         bookings = Booking.objects.all()
         serializer = BookingSerializer(bookings, many=True)
         return Response(serializer.data)
+
+
+def t_booking_list(request):
+    if request.method == 'GET':
+        bookings = Booking.objects.all()
+        data = {"bookings": bookings}
+        return render(request, 'booking_system/t_booking_list.html',
+                      context=data)
