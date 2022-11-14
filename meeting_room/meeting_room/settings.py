@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'drf_yasg',    
+    'drf_yasg',
     'booking_system'
 ]
 
@@ -125,4 +125,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'booking_system.CustomUser' 
+AUTH_USER_MODEL = 'booking_system.CustomUser'
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/booking_system/t_booking_list/'
+LOGOUT_REDIRECT_URL = "/login/"

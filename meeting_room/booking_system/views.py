@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from .models import Booking
 from .serializers import BookingSerializer
 from django.shortcuts import render, HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
 def booking_details(request, booking_id):
@@ -24,6 +25,7 @@ def booking_list(request):
         return Response(serializer.data)
 
 
+@login_required()
 def t_booking_list(request):
     if request.method == 'GET':
         bookings = Booking.objects.all()
