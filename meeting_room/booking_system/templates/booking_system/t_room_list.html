@@ -7,21 +7,21 @@
         <a class="nav-link" href="/login">Login</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" href="/booking_system/t_booking_list">Bookings</a>
+        <a class="nav-link" href="/booking_system/t_booking_list">Bookings</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/booking_system/t_room_list">Rooms</a>
+        <a class="nav-link active" href="/booking_system/t_room_list">Rooms</a>
     </li>
     <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>
     </li>
 </ul>
 <div style="margin-left: 1%;">
-    
-    <p>Booking_list:</p>
+
+    <p>Room_list:</p>
     <ul>
-        {% for booking in bookings %}
-        <li>{{ booking.room.name }}</li>
+        {% for room in rooms %}
+        <li>{{ room.name }} {{ room.chairs_number }} {{ room.projector }} {{ room.marker_board }}</li>
         {% endfor %}
     </ul>
 
