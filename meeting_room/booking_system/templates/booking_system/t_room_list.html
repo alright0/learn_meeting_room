@@ -16,15 +16,29 @@
         <a class="nav-link disabled" href="#">Disabled</a>
     </li>
 </ul>
-<div style="margin-left: 1%;">
 
-    <p>Room_list:</p>
-    <ul>
-        {% for room in rooms %}
-        <li>{{ room.name }} {{ room.chairs_number }} {{ room.projector }} {{ room.marker_board }}</li>
-        {% endfor %}
-    </ul>
-
+<div class="w-50 p-3">
+    <h1 class="text-primary">Room_list:</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">name</th>
+                <th scope="col">chairs_number</th>
+                <th scope="col">projector</th>
+                <th scope="col">marker_board</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in rooms %}
+            <tr>
+                <td class="text-info">Room {{ room.name }}</td>
+                <td>{{ room.chairs_number }}</td>
+                <td>{{ room.projector }}</td>
+                <td>{{ room.marker_board }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 {% endblock %}
