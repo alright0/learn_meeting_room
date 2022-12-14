@@ -1,9 +1,10 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Booking
+from .models import Booking, Room
 from .serializers import BookingSerializer
 from django.shortcuts import render, HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
 def booking_details(request, booking_id):
@@ -22,3 +23,21 @@ def booking_list(request):
         bookings = Booking.objects.all()
         serializer = BookingSerializer(bookings, many=True)
         return Response(serializer.data)
+
+
+@login_required()
+def t_booking_list(request):
+    if request.method == 'GET':
+        bookings = Booking.objects.all()
+        data = {"bookings": bookings}
+        return render(request, 'booking_system/t_booking_list.html',
+                      context=data)
+
+
+@login_required()
+def t_room_list(request):
+    if request.method == 'GET':
+        rooms = Room.objects.all()
+        data = {"rooms": rooms}
+        return render(request, 'booking_system/t_room_list.html',
+                      context=data)

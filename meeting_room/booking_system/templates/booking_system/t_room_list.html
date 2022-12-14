@@ -1,0 +1,44 @@
+{% extends "booking_system/base.html" %}
+
+{% block content %}
+
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/booking_system/t_booking_list">Bookings</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="/booking_system/t_room_list">Rooms</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+    </li>
+</ul>
+
+<div class="w-50 p-3">
+    <h1 class="text-primary">Room_list:</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">name</th>
+                <th scope="col">chairs_number</th>
+                <th scope="col">projector</th>
+                <th scope="col">marker_board</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in rooms %}
+            <tr>
+                <td class="text-info">Room {{ room.name }}</td>
+                <td>{{ room.chairs_number }}</td>
+                <td>{{ room.projector }}</td>
+                <td>{{ room.marker_board }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
