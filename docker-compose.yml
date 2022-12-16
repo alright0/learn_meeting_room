@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  learnmeetingroom:
+    #image: learnmeetingroom
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: gunicorn --chdir meeting_room meeting_room.wsgi:application --bind 0.0.0.0:8000
+    #command: python meeting_room/manage.py runserver 0.0.0.0:8000     
+    ports:
+      - 8000:8000
+    volumes:
+     - ./meeting_room:/meeting_room
+     - static_volume:/static
+
+  nginx:
+    #container_name: core_web
+    restart: on-failure
+    image: nginx:stable
+    volumes:
+      - ./meeting_room:/meeting_room    
+      - ./nginx/nginx.dev.conf:/etc/nginx/conf.d/default.conf
+      - static_volume:/static
+    ports:
+      - "80:80"
+    depends_on:
+      - learnmeetingroom
+
+volumes:
+  static_volume:
