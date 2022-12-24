@@ -1,5 +1,5 @@
 {% extends "booking_system/base.html" %}
-
+{% load static %}
 {% block content %}
 
 <ul class="nav">
@@ -33,8 +33,15 @@
             <tr>
                 <td class="text-info">Room {{ room.name }}</td>
                 <td>{{ room.chairs_number }}</td>
-                <td>{{ room.projector }}</td>
-                <td>{{ room.marker_board }}</td>
+                <td>{% if room.projector %}
+                    <img src="{% static 'img/Projector.png' %}" width="80px" %}>
+                    {% endif %}
+                </td>
+                <td>{% if room.marker_board %}
+                    <img src="{% static 'img/Board.png' %}" width="80px" %}>
+                    {% endif %}                    
+                </td>
+
             </tr>
             {% endfor %}
         </tbody>
