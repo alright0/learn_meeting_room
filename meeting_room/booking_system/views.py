@@ -41,3 +41,12 @@ def t_room_list(request):
         data = {"rooms": rooms}
         return render(request, 'booking_system/t_room_list.html',
                       context=data)
+
+
+@login_required()
+def t_room_bookings_details(request, pk):
+    if request.method == 'GET':
+        room = Room.objects.get(pk=pk)
+        data = {"room": room}
+        return render(request, 'booking_system/t_room_bookings_details.html',
+                      context=data)

@@ -31,7 +31,7 @@
         <tbody>
             {% for room in rooms %}
             <tr>
-                <td class="text-info">Room {{ room.name }}</td>
+                <td class="text-info"> <a href="../t_room_bookings/{{ room.pk }}">Room {{ room.name }}</a></td>
                 <td>{{ room.chairs_number }}</td>
                 <td>{% if room.projector %}
                     <img src="{% static 'img/Projector.png' %}" width="80px" %}>
@@ -39,10 +39,14 @@
                 </td>
                 <td>{% if room.marker_board %}
                     <img src="{% static 'img/Board.png' %}" width="80px" %}>
-                    {% endif %}                    
+                    {% endif %}
                 </td>
-
             </tr>
+            <tr>
+                <td colspan="4"  class="text-info">
+                    {{ room.get_last_booking }}
+                </td>
+            </tr>            
             {% endfor %}
         </tbody>
     </table>

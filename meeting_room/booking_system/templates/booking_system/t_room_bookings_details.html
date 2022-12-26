@@ -1,0 +1,37 @@
+{% extends "booking_system/base.html" %}
+{% load static %}
+{% block content %}
+
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/booking_system/t_booking_list">Bookings</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="/booking_system/t_room_list">Rooms</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+    </li>
+</ul>
+
+<div class="w-50 p-3">
+    <h1 class="text-primary">Room_bookings_details: {{ room.pk }}</h1>
+    <ul class="list-group">
+        <li class="list-group-item">name: {{ room.name }}</li>
+        <li class="list-group-item">chairs_number: {{ room.chairs_number }}</li>
+        <li class="list-group-item">projector:
+            {% if room.projector %}
+            <img src="{% static 'img/Projector.png' %}" width="80px" %}>
+            {% endif %}
+        </li>
+        <li class="list-group-item">marker_board: {% if room.marker_board %}
+            <img src="{% static 'img/Board.png' %}" width="80px" %}>
+            {% endif %}
+        </li>
+    </ul>
+</div>
+
+{% endblock %}
