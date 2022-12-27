@@ -18,7 +18,7 @@
 </ul>
 
 <div class="w-50 p-3">
-    <h1 class="text-primary">Room_bookings_details: {{ room.pk }}</h1>
+    <h1 class="text-primary">Room_bookings_details:</h1>
     <ul class="list-group">
         <li class="list-group-item">name: {{ room.name }}</li>
         <li class="list-group-item">chairs_number: {{ room.chairs_number }}</li>
@@ -32,6 +32,24 @@
             {% endif %}
         </li>
     </ul>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Room's bookings:</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td class="text-info">
+                    {{ booking }}
+                </td>
+            </tr>            
+            {% endfor %}
+        </tbody>
+    </table>
+
 </div>
 
 {% endblock %}

@@ -17,13 +17,27 @@
     </li>
 </ul>
 <div style="margin-left: 1%;">
-    
-    <p>Booking_list:</p>
-    <ul>
-        {% for booking in bookings %}
-        <li>{{ booking.room.name }}</li>
-        {% endfor %}
-    </ul>
+
+    <div class="w-50 p-3">
+        <h1 class="text-primary">Bookings'_list:</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">booking</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td class="text-info">
+                        {{ booking }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
 
 </div>
 

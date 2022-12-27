@@ -47,6 +47,8 @@ def t_room_list(request):
 def t_room_bookings_details(request, pk):
     if request.method == 'GET':
         room = Room.objects.get(pk=pk)
-        data = {"room": room}
+        bookings = Booking.objects.filter(room=room.pk)
+        data = {"room": room,
+                "bookings": bookings}
         return render(request, 'booking_system/t_room_bookings_details.html',
                       context=data)
