@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'rest_framework',
     'drf_yasg',
     'booking_system'
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',    
 ]
 
 ROOT_URLCONF = 'meeting_room.urls'
@@ -114,20 +116,15 @@ USE_I18N = True
 
 USE_TZ = True
 
+MEDIA_ROOT = BASE_DIR / 'data/'
+MEDIA_URL = '/media/'
+MEDIA_DIR = BASE_DIR / 'media/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
 
-#STATICFILES_DIRS = [
-#    BASE_DIR / "booking_system" / "static",
-#]
-#STATICFILES_DIRS = [
-#    BASE_DIR / 'static',
-#]
-
-#STATIC_ROOT = '/static'
 STATIC_ROOT = '/static/'
 
 # Default primary key field type
@@ -140,3 +137,9 @@ AUTH_USER_MODEL = 'booking_system.CustomUser'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/booking_system/t_booking_list/'
 LOGOUT_REDIRECT_URL = "/login/"
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
