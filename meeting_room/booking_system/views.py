@@ -28,7 +28,7 @@ def booking_list(request):
 @login_required()
 def t_booking_list(request):
     if request.method == 'GET':
-        bookings = Booking.objects.all()
+        bookings = Booking.objects.all().order_by('-date_to')
         data = {"bookings": bookings}
         return render(request, 'booking_system/t_booking_list.html',
                       context=data)
@@ -47,7 +47,7 @@ def t_room_list(request):
 def t_room_bookings_details(request, pk):
     if request.method == 'GET':
         room = Room.objects.get(pk=pk)
-        bookings = Booking.objects.filter(room=room.pk)
+        bookings = Booking.objects.filter(room=room.pk).order_by('-date_to')
         data = {"room": room,
                 "bookings": bookings}
         return render(request, 'booking_system/t_room_bookings_details.html',
