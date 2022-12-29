@@ -5,6 +5,7 @@ from .models import Booking, Room
 from .serializers import BookingSerializer
 from django.shortcuts import render, HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
 
 
 def booking_details(request, booking_id):
@@ -46,7 +47,7 @@ def t_room_list(request):
 @login_required()
 def t_room_bookings_details(request, pk):
     if request.method == 'GET':
-        room = Room.objects.get(pk=pk)
+        room = get_object_or_404(Room, pk=pk)                    
         bookings = Booking.objects.filter(room=room.pk).order_by('-date_to')
         data = {"room": room,
                 "bookings": bookings}
