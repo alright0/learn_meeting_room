@@ -44,7 +44,11 @@
             </tr>
             <tr>
                 <td colspan="4"  class="text-info">
-                    {{ room.get_last_booking }}
+                    {% for key, value in booking.items %}
+                        {% if key == room.id %}
+                            {{ value.full_name }}
+                        {% endif %}                            
+                    {% endfor %}
                 </td>
             </tr>            
             {% endfor %}
