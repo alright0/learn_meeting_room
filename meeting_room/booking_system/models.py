@@ -31,6 +31,7 @@ class Room(models.Model):
     def __str__(self):
         return self.name
 
+
 class Booking(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -38,8 +39,3 @@ class Booking(models.Model):
     time_from = models.TimeField(default="00:00")
     date_to = models.DateField(default=date.today,)
     time_to = models.TimeField(default="00:00")
-
-    def __str__(self):
-        booking_str = f" {str(self.user)} from {str(self.date_from)}   \
-          {str(self.time_from)[:5]} to {str(self.date_to)} {str(self.time_to)[:5]}"
-        return booking_str
