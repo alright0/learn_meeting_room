@@ -5,6 +5,8 @@ from .models import Booking, Room
 from .serializers import BookingSerializer
 from django.shortcuts import render, HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
+from booking_system.services.create_names_service import MakeBookingNameService
 
 
 def booking_details(request, booking_id):
@@ -28,7 +30,8 @@ def booking_list(request):
 @login_required()
 def t_booking_list(request):
     if request.method == 'GET':
-        bookings = Booking.objects.all()
+        bookings = Booking.objects.all().order_by('-date_to')
+        MakeBookingNameService.get_booking_names(bookings)
         data = {"bookings": bookings}
         return render(request, 'booking_system/t_booking_list.html',
                       context=data)
@@ -38,6 +41,21 @@ def t_booking_list(request):
 def t_room_list(request):
     if request.method == 'GET':
         rooms = Room.objects.all()
-        data = {"rooms": rooms}
+        qs = Booking.objects.all().select_related('room', 'user')
+        booking = MakeBookingNameService.get_last_booking_name(qs)
+        data = {"rooms": rooms,
+                "booking": booking}
         return render(request, 'booking_system/t_room_list.html',
+                      context=data)
+
+
+@login_required()
+def t_room_bookings_details(request, pk):
+    if request.method == 'GET':
+        room = get_object_or_404(Room, pk=pk)
+        bookings = Booking.objects.filter(room=room.pk).order_by('-date_to')
+        MakeBookingNameService.get_booking_names(bookings)
+        data = {"room": room,
+                "bookings": bookings}
+        return render(request, 'booking_system/t_room_bookings_details.html',
                       context=data)

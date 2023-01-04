@@ -8,8 +8,8 @@ class CustomUser(AbstractUser):
     EMPLOYEE = 2
 
     ROLE_CHOICES = (
-          (OFFICE_MANAGER, 'Office manager'),
-          (EMPLOYEE, 'Employee'),
+        (OFFICE_MANAGER, 'Office manager'),
+        (EMPLOYEE, 'Employee'),
     )
 
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES,
